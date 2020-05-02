@@ -5,6 +5,9 @@
   "repository": "https://github.com/abauruel/megahackatoon2Shawee.git",
   "author": "abauruel <abauruel@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "multer": "^1.4.2",

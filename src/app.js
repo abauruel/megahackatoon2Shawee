@@ -1,3 +1,5 @@
+require('./database');
+
 const express = require('express');
 const routes = require('./routes');
 
@@ -10,7 +12,7 @@ class App {
   }
 
   middleware() {
-    this.server.use(express.json);
+    this.server.use(express.json());
   }
 
   routes() {
