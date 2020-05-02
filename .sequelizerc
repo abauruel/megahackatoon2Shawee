@@ -1,0 +1,5 @@
+const { resolve } = requere('path')
+
+module.exports = {
+  config: resolve(__dirname, 'src', 'config', 'database.js')
+}
