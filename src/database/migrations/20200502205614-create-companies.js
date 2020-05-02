@@ -11,6 +11,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       phone: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -38,6 +42,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       description: {
+        type: Sequelize.STRING,
+      },
+      slogan: {
         type: Sequelize.STRING,
       },
       created_at: {

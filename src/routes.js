@@ -1,17 +1,12 @@
 const routes = require('express').Router();
 const Company = require('./app/models/Company');
+const Category = require('./app/models/Category');
 
 routes.get('/', async (req, res) => {
-  const company = await Company.create({
+  const category = await Category.create({
     name: 'test',
-    phone: '1128254840',
-    cnpj: '08.330.971/0001-01',
-    adress: 'av. test',
-    city: 'São Paulo',
-    state: 'São Paulo',
-    description: 'Isso é um test',
   });
-  return res.json(company);
+  return res.json(category);
 });
 
 module.exports = routes;

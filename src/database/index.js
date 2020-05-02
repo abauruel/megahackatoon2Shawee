@@ -1,10 +1,11 @@
 const Sequelize = require('sequelize');
 
 const Company = require('../app/models/Company');
+const Category = require('../app/models/Category');
 
 const dbConfig = require('../config/database');
 
-const models = [Company];
+const models = [Company, Category];
 
 class Database {
   constructor() {
