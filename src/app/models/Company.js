@@ -6,7 +6,8 @@ class Company extends Sequelize.Model {
       {
         name: Sequelize.STRING,
         phone: Sequelize.INTEGER,
-        cnpj: Sequelize.INTEGER,
+        email: Sequelize.STRING,
+        cnpj: Sequelize.STRING,
         adress: Sequelize.STRING,
         city: Sequelize.STRING,
         state: Sequelize.STRING,

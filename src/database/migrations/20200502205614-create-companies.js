@@ -14,6 +14,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       phone: {
         type: Sequelize.INTEGER,
@@ -22,6 +23,7 @@ module.exports = {
       cnpj: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       adress: {
         type: Sequelize.STRING,
