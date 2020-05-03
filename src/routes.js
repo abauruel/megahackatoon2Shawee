@@ -4,13 +4,14 @@ const Category = require('./app/models/Category');
 const Payment_method = require('./app/models/Payment_method');
 const Budget = require('./app/models/Budget');
 const Category_company = require('./app/models/Category_company');
+const Payment_Company = require('./app/models/Payment_Company');
 
 routes.get('/', async (req, res) => {
-  const category_company = await Category_company.create({
-    category_id: 4,
+  const payment_Company = await Payment_Company.create({
+    payment_id: 1,
     company_id: 5,
   });
-  return res.json(category_company);
+  return res.json(payment_Company);
 });
 
 module.exports = routes;

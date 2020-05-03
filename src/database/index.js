@@ -5,10 +5,18 @@ const Category = require('../app/models/Category');
 const Payment_method = require('../app/models/Payment_method');
 const Budget = require('../app/models/Budget');
 const Category_company = require('../app/models/Category_company');
+const Payment_Company = require('../app/models/Payment_Company');
 
 const databaseConfig = require('../config/database');
 
-const models = [Company, Category, Payment_method, Budget, Category_company];
+const models = [
+  Company,
+  Category,
+  Payment_method,
+  Budget,
+  Category_company,
+  Payment_Company,
+];
 
 class Database {
   constructor() {
