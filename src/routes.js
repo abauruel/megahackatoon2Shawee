@@ -4,8 +4,12 @@ const multerConfig = require('./config/multer');
 
 const upload = multer(multerConfig);
 
-routes.post('/teste', upload.single('file'), (req, res) => {
-  return res.json({ message: 'SendFileAWS' });
-});
+const CompanyController = require('./app/controllers/companyController');
+
+routes.post('/company', CompanyController.store);
+routes.get('/company', CompanyController.index);
+routes.get('/company/:id', CompanyController.show);
+routes.put('/company/:id', CompanyController.update);
+routes.delete('/company/:id', CompanyController.delete);
 
 module.exports = routes;
