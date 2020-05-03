@@ -1,8 +1,11 @@
 const { Op } = require('sequelize');
 const Company = require('../models/Company');
+const Category = require('../models/Category');
+const Payment_method = require('../models/Payment_method');
 
 module.exports = {
   async store(req, res) {
+    const { categories, payment_methods, ...data } = req.body;
     const checkEmailExist = await Company.findOne({
       where: {
         [Op.or]: [{ email: req.body.email }, { cnpj: req.body.cnpj }],
@@ -10,12 +13,33 @@ module.exports = {
     });
     if (checkEmailExist)
       return res.status(400).json({ message: 'Email or CNPJ already exists' });
-    const company = await Company.create(req.body);
+
+    const company = await Company.create(data);
+    if (categories && categories.length > 0) {
+      company.setCategories(categories);
+    }
+    if (payment_methods && payment_methods.length > 0) {
+      company.setPayment_methods(payment_methods);
+    }
+
     return res.json(company);
   },
 
   async index(req, res) {
-    const companies = await Company.findAll();
+    const companies = await Company.findAll({
+      include: [
+        {
+          model: Category,
+          as: 'categories',
+          through: { attributes: [] },
+        },
+        {
+          model: Payment_method,
+          as: 'payment_methods',
+          through: { attributes: [] },
+        },
+      ],
+    });
     return res.json(companies);
   },
 
