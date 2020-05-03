@@ -10,6 +10,15 @@ class Payment_method extends Sequelize.Model {
         sequelize,
       }
     );
+    return this;
+  }
+
+  static associate(models) {
+    this.belongsToMany(models.Company, {
+      through: 'payment__companies',
+      as: 'company',
+      foreignKey: 'payment_id',
+    });
   }
 }
 
