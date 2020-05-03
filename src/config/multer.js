@@ -13,7 +13,7 @@ aws.config.update({
 const storageTypes = {
   local: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, path.resolve(__dirname, 'tmp', 'uploads'));
+      cb(null, path.resolve(__dirname, '..', '..', 'tmp', 'uploads'));
     },
 
     filename: (req, file, cb) => {
