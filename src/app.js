@@ -1,4 +1,6 @@
+require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const routes = require('./routes');
 
 class App {
@@ -10,7 +12,9 @@ class App {
   }
 
   middleware() {
-    this.server.use(express.json);
+    this.server.use(cors());
+    this.server.use(express.urlencoded({ extended: true }));
+    this.server.use(express.json());
   }
 
   routes() {
