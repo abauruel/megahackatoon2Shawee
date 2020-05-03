@@ -3,10 +3,11 @@ const Sequelize = require('sequelize');
 const Company = require('../app/models/Company');
 const Category = require('../app/models/Category');
 const Payment_method = require('../app/models/Payment_method');
+const Budget = require('../app/models/Budget');
 
-const dbConfig = require('../config/database');
+const databaseConfig = require('../config/database');
 
-const models = [Company, Category, Payment_method];
+const models = [Company, Category, Payment_method, Budget];
 
 class Database {
   constructor() {
@@ -14,9 +15,12 @@ class Database {
   }
 
   init() {
-    this.connection = new Sequelize(dbConfig);
+    this.connection = new Sequelize(databaseConfig);
 
     models.map((model) => model.init(this.connection));
+    models.map(
+      (model) => model.associate && model.associate(this.connection.models)
+    );
   }
 }
 
