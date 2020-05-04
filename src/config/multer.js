@@ -19,14 +19,14 @@ const storageTypes = {
     filename: (req, file, cb) => {
       crypto.randomBytes(16, (err, hash) => {
         if (err) return cb(err);
-
+        file.key = `${hash.toString('hex')}-${file.originalname}`;
         return cb(null, `${hash.toString('hex')}-${file.originalname}`);
       });
     },
   }),
   s3: multers3({
     s3: new aws.S3(),
-    bucket: 'bucketcotacoesapp',
+    bucket: process.env.AWS_BUCKET,
     contentType: multers3.AUTO_CONTENT_TYPE,
     acl: 'public-read',
     key: (req, file, cb) => {
@@ -40,7 +40,7 @@ const storageTypes = {
 };
 
 module.exports = {
-  storage: storageTypes.s3,
+  storage: storageTypes[process.env.STORAGE_TYPE],
   limits: { fileSize: 4 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png'];
