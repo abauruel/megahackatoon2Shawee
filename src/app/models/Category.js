@@ -19,6 +19,7 @@ class Category extends Sequelize.Model {
       as: 'company',
       foreignKey: 'category_id',
     });
+    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
   }
 }
 
