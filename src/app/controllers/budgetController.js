@@ -16,7 +16,6 @@ module.exports = {
     const { company_id, category_id, description } = req.body;
 
     const user_id = req.userId;
-    console.log(user_id);
     const budget = await Budget.create({
       category_id,
       company_id,
