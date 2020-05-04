@@ -7,10 +7,22 @@ const Budget = require('../app/models/Budget');
 const User = require('../app/models/User');
 const File = require('../app/models/File');
 const Comment = require('../app/models/Comment');
+const Delivery = require('../app/models/Delivery');
+const Differential = require('../app/models/Differential');
 
 const databaseConfig = require('../config/database');
 
-const models = [Company, Category, Payment_method, Budget, User, File, Comment];
+const models = [
+  Company,
+  Category,
+  Payment_method,
+  Budget,
+  User,
+  File,
+  Comment,
+  Delivery,
+  Differential,
+];
 
 class Database {
   constructor() {
