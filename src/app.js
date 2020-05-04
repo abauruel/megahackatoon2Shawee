@@ -1,6 +1,7 @@
 require('dotenv').config();
 require('./database');
 
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const routes = require('./routes');
@@ -17,6 +18,10 @@ class App {
     this.server.use(cors());
     this.server.use(express.urlencoded({ extended: true }));
     this.server.use(express.json());
+    this.server.use(
+      '/files',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+    );
   }
 
   routes() {
