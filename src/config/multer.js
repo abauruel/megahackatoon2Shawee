@@ -16,11 +16,15 @@ const storageTypes = {
       cb(null, path.resolve(__dirname, '..', '..', 'tmp', 'uploads'));
     },
 
+    name: (req, file, cb) => cb(null, file.originalname),
     filename: (req, file, cb) => {
       crypto.randomBytes(16, (err, hash) => {
         if (err) return cb(err);
+
+        file.name = file.originalname;
         file.key = `${hash.toString('hex')}-${file.originalname}`;
-        return cb(null, `${hash.toString('hex')}-${file.originalname}`);
+        file.url = `${process.env.APP_URL}/files/${file.key}`;
+        return cb(null, file.key);
       });
     },
   }),
@@ -32,7 +36,7 @@ const storageTypes = {
     key: (req, file, cb) => {
       crypto.randomBytes(16, (err, hash) => {
         if (err) return cb(err);
-
+        file.name = file.originalname;
         return cb(null, `${hash.toString('hex')}-${file.originalname}`);
       });
     },
