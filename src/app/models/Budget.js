@@ -4,7 +4,6 @@ class Budget extends Sequelize.Model {
   static init(sequelize) {
     super.init(
       {
-        price: Sequelize.INTEGER,
         description: Sequelize.STRING,
       },
       {
@@ -17,6 +16,12 @@ class Budget extends Sequelize.Model {
   static associate(models) {
     this.belongsTo(models.Category, { foreignKey: 'category_id' });
     this.belongsTo(models.Company, { foreignKey: 'company_id' });
+    this.belongsTo(models.User, { foreignKey: 'user_id' });
+    this.belongsToMany(models.File, {
+      through: 'budget_files',
+      as: 'files',
+      foreignKey: 'budget_id',
+    });
   }
 }
 
