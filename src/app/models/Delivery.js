@@ -17,7 +17,7 @@ class Delivery extends Sequelize.Model {
     this.belongsToMany(models.Company, {
       through: 'delivery_company',
       as: 'companies',
-      foreignKey: 'company_id',
+      foreignKey: 'delivery_id',
     });
   }
 }

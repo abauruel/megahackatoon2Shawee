@@ -42,7 +42,7 @@ class File extends Sequelize.Model {
     this.belongsToMany(models.Company, {
       through: 'company_files',
       as: 'companies',
-      foreignKey: 'company_id',
+      foreignKey: 'file_id',
     });
   }
 }

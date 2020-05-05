@@ -34,20 +34,20 @@ class Company extends Sequelize.Model {
       as: 'payment_methods',
       foreignKey: 'company_id',
     });
-    this.belongsToMany(models.Differential, {
-      through: 'company_differential',
-      as: 'differentials',
-      foreignKey: 'differential_id',
-    });
     this.belongsToMany(models.Delivery, {
       through: 'delivery_company',
       as: 'deliveries',
-      foreignKey: 'delivery_id',
+      foreignKey: 'company_id',
+    });
+    this.belongsToMany(models.Differential, {
+      through: 'company_differential',
+      as: 'differentials',
+      foreignKey: 'company_id',
     });
     this.belongsToMany(models.File, {
       through: 'company_files',
       as: 'files',
-      foreignKey: 'file_id',
+      foreignKey: 'company_id',
     });
   }
 }

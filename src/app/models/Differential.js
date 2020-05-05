@@ -16,8 +16,8 @@ class Differential extends Sequelize.Model {
   static associate(models) {
     this.belongsToMany(models.Company, {
       through: 'company_differential',
-      as: 'companies',
-      foreignKey: 'company_id',
+      as: 'company',
+      foreignKey: 'differential_id',
     });
   }
 }

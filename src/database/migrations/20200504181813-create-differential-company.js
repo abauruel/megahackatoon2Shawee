@@ -13,6 +13,9 @@ module.exports = {
           model: 'companies',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: false,
       },
       differential_id: {
         type: Sequelize.INTEGER,
@@ -20,6 +23,9 @@ module.exports = {
           model: 'differentials',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,

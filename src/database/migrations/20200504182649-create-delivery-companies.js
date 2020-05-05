@@ -7,6 +7,9 @@ module.exports = {
           model: 'companies',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: false,
       },
       delivery_id: {
         type: Sequelize.INTEGER,
@@ -14,6 +17,9 @@ module.exports = {
           model: 'deliveries',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
