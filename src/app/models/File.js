@@ -18,6 +18,7 @@ class File extends Sequelize.Model {
         sequelize,
       }
     );
+
     this.addHook('beforeSave', async (file) => {
       if (!file.url) {
         file.url = `${process.env.APP_URL}/files/${file.key}`;
@@ -33,6 +34,15 @@ class File extends Sequelize.Model {
       return promisify(fs.unlink)(
         path.resolve(__dirname, '..', '..', 'tmp', 'uploads', file.key)
       );
+    });
+    return this;
+  }
+
+  static associate(models) {
+    this.belongsToMany(models.Company, {
+      through: 'company_files',
+      as: 'companies',
+      foreignKey: 'file_id',
     });
   }
 }

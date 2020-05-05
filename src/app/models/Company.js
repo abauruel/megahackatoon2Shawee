@@ -14,6 +14,7 @@ class Company extends Sequelize.Model {
         social_media: Sequelize.STRING,
         website: Sequelize.STRING,
         description: Sequelize.STRING,
+        slogan: Sequelize.STRING,
       },
       {
         sequelize,
@@ -31,6 +32,21 @@ class Company extends Sequelize.Model {
     this.belongsToMany(models.Payment_method, {
       through: 'payment__companies',
       as: 'payment_methods',
+      foreignKey: 'company_id',
+    });
+    this.belongsToMany(models.Delivery, {
+      through: 'delivery_company',
+      as: 'deliveries',
+      foreignKey: 'company_id',
+    });
+    this.belongsToMany(models.Differential, {
+      through: 'company_differential',
+      as: 'differentials',
+      foreignKey: 'company_id',
+    });
+    this.belongsToMany(models.File, {
+      through: 'company_files',
+      as: 'files',
       foreignKey: 'company_id',
     });
   }

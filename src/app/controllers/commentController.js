@@ -2,7 +2,14 @@ const Comment = require('../models/Comment');
 
 module.exports = {
   async index(req, res) {
-    return res.json({ ok: true });
+    const { company_id } = req.body;
+    const comments = await Comment.findAll({
+      where: {
+        company_id,
+      },
+    });
+
+    return res.json(comments);
   },
   async store(req, res) {
     const { company_id, user_id, rate, comment } = req.body;

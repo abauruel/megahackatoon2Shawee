@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-class Category extends Sequelize.Model {
+class Differential extends Sequelize.Model {
   static init(sequelize) {
     super.init(
       {
@@ -15,12 +15,11 @@ class Category extends Sequelize.Model {
 
   static associate(models) {
     this.belongsToMany(models.Company, {
-      through: 'category_companies',
+      through: 'company_differential',
       as: 'company',
-      foreignKey: 'category_id',
+      foreignKey: 'differential_id',
     });
-    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
   }
 }
 
-module.exports = Category;
+module.exports = Differential;
