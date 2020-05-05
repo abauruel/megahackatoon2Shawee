@@ -14,6 +14,9 @@ const CategoryController = require('./app/controllers/categoryController');
 const PaymentMethod = require('./app/controllers/paymentMethodController');
 const Comment = require('./app/controllers/commentController');
 const BudgetRequest = require('./app/controllers/budgetController');
+const DifferentialController = require('./app/controllers/differentialController');
+const DeliveryController = require('./app/controllers/deliveryController');
+const CompanyFiltersController = require('./app/controllers/companyFilterController');
 
 routes.post('/user', UserController.store);
 routes.post('/session', SessionController.store);
@@ -29,6 +32,9 @@ routes.get('/category', CategoryController.index);
 routes.post('/payment_method', PaymentMethod.store);
 routes.get('/payment_method', PaymentMethod.index);
 routes.get('/comment', Comment.index);
+routes.get('/differential', DifferentialController.index);
+routes.get('/delivery', DeliveryController.index);
+routes.get('/companies', CompanyFiltersController.index);
 
 routes.use(authMiddleware);
 
