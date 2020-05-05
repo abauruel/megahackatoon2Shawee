@@ -30,11 +30,11 @@ module.exports = {
     if (payment_methods && payment_methods.length > 0) {
       company.setPayment_methods(payment_methods);
     }
-    if (deliveries && deliveries.length > 0) {
-      company.setDeliveries(payment_methods);
-    }
     if (diferentials && diferentials.length > 0) {
-      company.setdifferentials(payment_methods);
+      company.setDifferentials(diferentials);
+    }
+    if (deliveries && deliveries.length > 0) {
+      company.setDeliveries(deliveries);
     }
 
     return res.json(company);
@@ -70,7 +70,33 @@ module.exports = {
 
   async show(req, res) {
     const { id } = req.params;
-    const company = await Company.findByPk(id);
+    const company = await Company.findAll({
+      where: {
+        id,
+      },
+      include: [
+        {
+          model: Category,
+          as: 'categories',
+          through: { attributes: [] },
+        },
+        {
+          model: Payment_method,
+          as: 'payment_methods',
+          through: { attributes: [] },
+        },
+        {
+          model: Differential,
+          as: 'differentials',
+          through: { attributes: [] },
+        },
+        {
+          model: Delivery,
+          as: 'deliveries',
+          through: { attributes: ['name'] },
+        },
+      ],
+    });
 
     return res.json(company);
   },
